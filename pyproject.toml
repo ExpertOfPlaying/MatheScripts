@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "klausur-scripts"
+version = "0.1.0"
+description = "Scripts for solving math problems."
+readme = "README.md"
+requires-python = ">=3.14"
+authors = [{name = "Alexander Yurovskyy"}]
+license = "MIT"
+
+dependencies = [
+
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.0.2",
+    "pytest-cov==7.0.0",
+    "ruff==0.14.14",
+    "mypy==1.19.1"
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+src = ["src"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q -m 'not integration'"
+testpaths = ["tests"]
+markers = [
+    "integration: marks tests as integrations tests (newtwork / real services)"
+]
+log_cli = true
+log_cli_level = "INFO"
+
+[tool.mypy]
+python_version = "3.14"
+ignore_missing_imports = true
+strict = true
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.coverage.run]
+source = ["src/klausur_scripts"]
+
+[tool.coverage.report]
+
+[project.scripts]
+kongruenz = "klausur_scripts.kongruenz:main"
+rundenturnier = "klausur_scripts.rundenturnier:main"
+gegner-team = "klausur_scripts.gegner_team:main"
+isbn10 = "klausur_scripts.isbn10:main"
+isbn10-error = "klausur_scripts.isbn10_error:main"
+ggT = "klausur_scripts.ggT:main"
+bezout = "klausur_scripts.bezout:main"
+matrix-q = "klausur_scripts.matrix_q:main"
+prime-phi = "klausur_scripts.prime_phi:main"
+rsa = "klausur_scripts.rsa:main"
+crt = "klausur_scripts.crt:main"
